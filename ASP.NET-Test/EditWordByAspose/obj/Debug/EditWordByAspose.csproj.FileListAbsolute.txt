@@ -1,0 +1,12 @@
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\bin\Debug\EditWordByAspose.exe.config
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\bin\Debug\EditWordByAspose.exe
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\bin\Debug\EditWordByAspose.pdb
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\obj\Debug\EditWordByAspose.csprojAssemblyReference.cache
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\obj\Debug\EditWordByAspose.Form1.resources
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\obj\Debug\EditWordByAspose.Properties.Resources.resources
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\obj\Debug\EditWordByAspose.csproj.GenerateResource.cache
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\obj\Debug\EditWordByAspose.csproj.CoreCompileInputs.cache
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\obj\Debug\EditWordByAspose.csproj.CopyComplete
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\obj\Debug\EditWordByAspose.exe
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\obj\Debug\EditWordByAspose.pdb
+D:\git—ASP.NET-Test\ASP.NET-Test\EditWordByAspose\bin\Debug\Aspose.Words.dll

@@ -1,0 +1,784 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A58D68A3-4055-4325-B142-56B935C7189A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>jsonToMrv</RootNamespace>
+    <AssemblyName>jsonToMrv</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChemAxon.IKVM.aloe.1.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.aloe.1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.antlr.2.7.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.antlr.2.7.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.apache.mime4j.core.0.7.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.apache.mime4j.core.0.7.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.asm.3.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.asm.3.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.automaton.1.11.8, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.automaton.1.11.8.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.batik.core.1.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.batik.core.1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.bcprov.jdk15.1.46, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.bcprov.jdk15.1.46.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.boilerpipe.1.1.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.boilerpipe.1.1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.castor.core.1.3.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.castor.core.1.3.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.castor.xml.1.3.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.castor.xml.1.3.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.chart.1.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.chart.1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alchemist.commons, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alchemist.commons.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alchemist.configbuilder, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alchemist.configbuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alchemist.framework, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alchemist.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alchemist.marvintools, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alchemist.marvintools.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alchemist.metabolizer, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alchemist.metabolizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alchemist.old, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alchemist.old.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alchemist.standardizer, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alchemist.standardizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alchemist.structurechecker, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alchemist.structurechecker.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alchemist.wizard, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alchemist.wizard.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alignment, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alignment.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.alignment.plugin, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.alignment.plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.annotations, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.automapper, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.automapper.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.calculations, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.calculations.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.calculations.commons, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.calculations.commons.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.calculations.nmr, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.calculations.nmr.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.calculations.plugin, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.calculations.plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.calculations.solubility, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.calculations.solubility.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.calculations.stereoanal, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.calculations.stereoanal.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.calculations.stereoanal.api, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.calculations.stereoanal.api.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.calculations.stereoisomers, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.calculations.stereoisomers.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.chart, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.chart.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.clustering, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.clustering.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.codeassist, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.codeassist.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.common, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.common.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.concurrent, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.concurrent.utils, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.concurrent.utils.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.config.utils, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.config.utils.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.convoy, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.convoy.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.core, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.core.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.core.calculations, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.core.calculations.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.descriptors, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.descriptors.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.descriptors.jep, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.descriptors.jep.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.enumeration, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.enumeration.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.enumeration.plugin, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.enumeration.plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.icons, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.icons.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.icons.old, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.icons.old.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.accord, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.accord.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.all, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.all.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.cdx, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.cdx.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.gaussian, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.gaussian.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.inchi, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.inchi.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.mdl, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.mdl.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.mrv, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.mrv.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.pdb, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.peptide, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.peptide.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.skc, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.skc.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.smiles, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.smiles.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.io.tripos, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.io.tripos.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.cachereg.common, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.cachereg.common.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.cartridge, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.cartridge.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.cartridge.jcserver, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.cartridge.jcserver.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.cartridge.oraresident, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.cartridge.oraresident.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.cartridge.shared, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.cartridge.shared.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.connection, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.connection.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.constants, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.constants.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.gui, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.gui.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.main, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.main.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.molecule.persister, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.molecule.persister.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.persist.common, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.persist.common.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.sql.utils, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.sql.utils.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jchem.utils, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jchem.utils.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jep, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jep.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.jklustor, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.jklustor.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.libmcs, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.libmcs.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.license, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.license.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.markush.gui.old, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.markush.gui.old.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.markush.tools, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.markush.tools.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.marvin.app, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.marvin.app.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.marvin.gui, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.marvin.gui.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.marvin.services, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.marvin.services.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.marvin.services.gui, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.marvin.services.gui.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.marvin.space, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.marvin.space.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.marvin.utils, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.marvin.utils.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.metabolizer, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.metabolizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.modelling, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.modelling.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.naming, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.naming.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.office, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.office.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.overlap.concurrent, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.overlap.concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.overlap.core, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.overlap.core.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.overlap.descriptors, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.overlap.descriptors.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.pharmacophore, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.pharmacophore.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.api, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.api.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.base, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.base.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.extended, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.extended.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.hitdisplay, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.hitdisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.mcs, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.mcs.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.mcs.app, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.mcs.app.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.rgdecomp, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.rgdecomp.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.screen, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.screen.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.sss, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.sss.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.search.utils, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.search.utils.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.sizeinfo, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.sizeinfo.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.sizeinfo.agent, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.sizeinfo.agent.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.standardizer.reactor, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.standardizer.reactor.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.structurechecker, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.structurechecker.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.structurechecker.api, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.structurechecker.api.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.structurechecker.marvin, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.structurechecker.marvin.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.transformer, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.transformer.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.com.chemaxon.version, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.com.chemaxon.version.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.commons.codec.1.6, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.commons.codec.1.6.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.commons.compress.1.9, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.commons.compress.1.9.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.commons.dbcp.1.4, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.commons.dbcp.1.4.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.commons.exec.1.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.commons.exec.1.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.commons.io.2.4, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.commons.io.2.4.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.commons.lang.2.5, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.commons.lang.2.5.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.commons.lang3.3.3.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.commons.lang3.3.3.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.commons.logging.1.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.commons.logging.1.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.commons.pool.1.6, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.commons.pool.1.6.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.csjdbc.1.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.csjdbc.1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.db2jcc4.10.5.0.2.FP002, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.db2jcc4.10.5.0.2.FP002.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derby.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derby.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyclient.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyclient.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.cs.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.cs.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.de.DE.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.de.DE.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.es.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.es.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.fr.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.fr.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.hu.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.hu.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.it.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.it.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.ja.JP.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.ja.JP.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.ko.KR.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.ko.KR.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.pl.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.pl.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.pt.BR.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.pt.BR.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.ru.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.ru.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.zh.CN.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.zh.CN.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbyLocale.zh.TW.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbyLocale.zh.TW.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbynet.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbynet.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.derbytools.10.10.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.derbytools.10.10.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.dom4j.1.6.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.dom4j.1.6.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.fontbox.1.8.9, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.fontbox.1.8.9.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.freehep.export.2.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.freehep.export.2.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.freehep.graphics2d.2.2.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.freehep.graphics2d.2.2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.freehep.graphicsbase.2.2.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.freehep.graphicsbase.2.2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.freehep.graphicsio.2.2.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.freehep.graphicsio.2.2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.freehep.graphicsio.emf.2.2.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.freehep.graphicsio.emf.2.2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.freehep.graphicsio.pdf.2.2.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.freehep.graphicsio.pdf.2.2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.freehep.graphicsio.ps.2.2.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.freehep.graphicsio.ps.2.2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.freehep.io.2.2.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.freehep.io.2.2.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.guava.16.0.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.guava.16.0.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.hsqldb.2.3.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.hsqldb.2.3.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.itext.2.1.7, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.itext.2.1.7.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.itext.rtf.2.1.7, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.itext.rtf.2.1.7.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jacob.1.17, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jacob.1.17.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jai.codec.1.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jai.codec.1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jai.core.1.1.3, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jai.core.1.1.3.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jai.imageio.core.1.3.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jai.imageio.core.1.3.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jaxen.1.1.6, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jaxen.1.1.6.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jcampdx.lib.0.9.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jcampdx.lib.0.9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jchem, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jchem.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jcommander.1.32, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jcommander.1.32.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jempbox.1.8.9, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jempbox.1.8.9.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jextexp.1.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jextexp.1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jgoodies.common.1.7.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jgoodies.common.1.7.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jgoodies.forms.1.7.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jgoodies.forms.1.7.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jgrapht.0.8.3, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jgrapht.0.8.3.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jni.inchi.0.7, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jni.inchi.0.7.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.json.20140107, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.json.20140107.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jsr305.2.0.3, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jsr305.2.0.3.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.jtds.1.2.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.jtds.1.2.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.juniversalchardet.1.0.3, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.juniversalchardet.1.0.3.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.levigo.jbig2.imageio.1.6.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.levigo.jbig2.imageio.1.6.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.looks.2.1.4, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.looks.2.1.4.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.MarvinBeans, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.MarvinBeans.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.metadata.extractor.2.4.0.beta.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.metadata.extractor.2.4.0.beta.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.mimepull.1.7, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.mimepull.1.7.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.mysql.connector.java.5.1.29, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.mysql.connector.java.5.1.29.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.ojdbc6.11.2.0.4, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.ojdbc6.11.2.0.4.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.ooxml.schemas.1.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.ooxml.schemas.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.org.osgi.compendium.4.0.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.org.osgi.compendium.4.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.org.osgi.core.4.0.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.org.osgi.core.4.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.pdfbox.1.8.9, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.pdfbox.1.8.9.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.poi.3.11.beta2.20140914, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.poi.3.11.beta2.20140914.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.poi.ooxml.3.11.beta2.20140914.56023, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.poi.ooxml.3.11.beta2.20140914.56023.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.poi.scratchpad.3.11.beta2.20140914, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.poi.scratchpad.3.11.beta2.20140914.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.postgresql.9.3.1101.jdbc4, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.postgresql.9.3.1101.jdbc4.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.regexp.1.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.regexp.1.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.runtime12.1.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.runtime12.1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.saaj.impl.1.3.19, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.saaj.impl.1.3.19.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.sqljdbc4.4.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.sqljdbc4.4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.tagsoup.1.2.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.tagsoup.1.2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.tesseract.data.3.01.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.tesseract.data.3.01.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.tesseract.windows.3.01.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.tesseract.windows.3.01.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.tika.core.1.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.tika.core.1.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.tika.parsers.1.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.tika.parsers.1.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.vorbis.java.core.0.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.vorbis.java.core.0.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.vorbis.java.tika.0.1, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.vorbis.java.tika.0.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.ws.commons.util.1.0.2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.ws.commons.util.1.0.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.wsdl4j.1.6.3, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.wsdl4j.1.6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.xml.apis.1.0.b2, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.xml.apis.1.0.b2.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.xmlbeans.2.5.0, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.xmlbeans.2.5.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.xmlrpc.client.3.1.3, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.xmlrpc.client.3.1.3.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.xmlrpc.common.3.1.3, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.xmlrpc.common.3.1.3.dll</HintPath>
+    </Reference>
+    <Reference Include="ChemAxon.IKVM.xz.1.5, Version=15.11.200.2681, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ChemAxon.IKVM.xz.1.5.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.AWT.WinForms, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.AWT.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Beans, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Beans.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Charsets, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Charsets.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Corba, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Corba.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Jdbc, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Jdbc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Management, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Media, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Misc, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Misc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Naming, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Naming.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Remoting, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Remoting.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Security, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.SwingAWT, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.SwingAWT.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Text, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Tools, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.API, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.XML.API.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Bind, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.XML.Bind.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Crypto, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Parse, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Transform, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.XML.Transform.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.XPath, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.OpenJDK.XML.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Reflection, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime.JNI, Version=7.4.5196.2030, Culture=neutral, PublicKeyToken=d25ce09139c726a9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ChemAxonPackage.1.0.1\lib\IKVM.Runtime.JNI.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemNode.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmilesReplaceHelper.cs" />
+    <Compile Include="WriteMrv.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
